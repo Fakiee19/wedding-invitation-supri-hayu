@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>The Wedding of Supriyadi & Hayu Kartikasari — 30 Mei 2026</title>
+  <meta name="description" content="Undangan pernikahan Supriyadi & Hayu Kartikasari. Resepsi 30 Mei 2026 di Sumberejo, Kab. Semarang. Mohon doa restu." />
+  <meta name="keywords" content="undangan pernikahan, wedding, Supriyadi, Hayu Kartikasari, Semarang, 2026" />
+  <meta name="author" content="Supriyadi & Hayu Kartikasari" />
+  <meta name="theme-color" content="#140507" />
+  <link rel="canonical" href="https://your-domain.vercel.app/" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The Wedding of Supriyadi & Hayu Kartikasari" />
+  <meta property="og:description" content="Sabtu, 30 Mei 2026 — Mohon doa restu." />
+  <meta property="og:image" content="https://your-domain.vercel.app/assets/images/couple-hero.webp" />
+  <meta property="og:locale" content="id_ID" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="assets/images/favicon.png" type="image/png" />
+</head>
+<body>
+  <!-- Loading -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__grain"></div>
+    <div class="loader__inner">
+      <p class="loader__label">The Wedding</p>
+      <div class="loader__line"></div>
+      <p class="loader__names">Supriyadi <span>&</span> Hayu</p>
+    </div>
+  </div>
+
+  <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+  <div class="grain" aria-hidden="true"></div>
+  <canvas id="particles" class="particles" aria-hidden="true"></canvas>
+
+  <!-- Music -->
+  <audio id="bgMusic" loop preload="metadata" playsinline>
+    <!-- Ganti src dengan file instrumental Anda di /assets/music.mp3 -->
+    <source src="assets/music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <header class="nav-header" id="navHeader">
+    <a href="#hero" class="nav-logo">
+      <img src="assets/images/logo-pernikahan.png" alt="Undangan Supriyadi &amp; Hayu Kartikasari" class="nav-logo__img" width="160" height="48" loading="eager" decoding="async" />
+    </a>
+    <nav class="nav" id="mainNav" aria-label="Utama">
+      <a href="#opening">Pembuka</a>
+      <a href="#couple">Mempelai</a>
+      <a href="#event">Acara</a>
+      <a href="#story">Cerita</a>
+      <a href="#gallery">Galeri</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#gift">Hadiah</a>
+    </nav>
+    <div class="nav-actions">
+      <button type="button" class="btn-music" id="btnMusic" aria-label="Putar atau jeda musik latar">
+        <i data-lucide="music" class="icon-music-on"></i>
+        <i data-lucide="music-off" class="icon-music-off"></i>
+      </button>
+      <button type="button" class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="mainContent" class="main is-locked">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero__media">
+        <div class="hero__cinematic-bg" aria-hidden="true"></div>
+        <video class="hero__video" autoplay muted loop playsinline poster="assets/images/couple-hero.webp">
+          <source src="assets/hero.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__overlay"></div>
+        <div class="hero__lights" aria-hidden="true"></div>
+      </div>
+      <div class="hero__content">
+        <p class="hero__eyebrow hero-reveal" style="--d:0.05s">The Wedding Of</p>
+        <h1 class="hero__title">
+          <span class="hero__name hero-reveal" style="--d:0.12s">Supriyadi</span>
+          <span class="hero__and hero-reveal" style="--d:0.2s">&</span>
+          <span class="hero__name hero-reveal" style="--d:0.28s">Hayu Kartikasari</span>
+        </h1>
+        <p class="hero__date hero-reveal" style="--d:0.36s">Sabtu, 30 Mei 2026</p>
+        <div class="hero__countdown hero-countdown hero-reveal" id="heroCountdown" style="--d:0.44s">
+          <div class="hero-countdown__item"><span id="cdDaysH">00</span><small>Hari</small></div>
+          <div class="hero-countdown__sep">:</div>
+          <div class="hero-countdown__item"><span id="cdHoursH">00</span><small>Jam</small></div>
+          <div class="hero-countdown__sep">:</div>
+          <div class="hero-countdown__item"><span id="cdMinsH">00</span><small>Menit</small></div>
+          <div class="hero-countdown__sep">:</div>
+          <div class="hero-countdown__item"><span id="cdSecsH">00</span><small>Detik</small></div>
+        </div>
+        <button type="button" class="btn btn--primary btn--glow hero-reveal" id="btnOpenInvite" style="--d:0.52s">
+          <span>Buka Undangan</span>
+          <i data-lucide="heart"></i>
+        </button>
+      </div>
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <span>Scroll</span>
+        <i data-lucide="chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- OPENING -->
+    <section class="section section--opening" id="opening">
+      <div class="container container--narrow">
+        <blockquote class="opening-quote" data-aos="fade-up" data-aos-duration="1200">
+          <span class="opening-quote__deco" aria-hidden="true">“</span>
+          <p class="opening-quote__text">
+            Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan-pasangan untukmu
+            <em>agar kamu merasa tenteram kepadanya.</em>
+          </p>
+          <cite class="opening-quote__cite">QS. Ar-Rum: 21</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- COUPLE -->
+    <section class="section section--couple" id="couple">
+      <div class="container">
+        <header class="section-head" data-aos="fade-up">
+          <span class="section-eyebrow">Mempelai</span>
+          <h2 class="section-title">Bride <span class="amp">&</span> Groom</h2>
+        </header>
+        <div class="couple-grid">
+          <article class="couple-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="couple-card__frame">
+              <div class="couple-card__glow"></div>
+              <img src="assets/images/supriyadi.webp" alt="Supriyadi" class="couple-card__img" width="480" height="600" loading="lazy" decoding="async" />
+            </div>
+            <h3 class="couple-card__name">Supriyadi</h3>
+            <p class="couple-card__label">Mempelai Pria</p>
+            <p class="couple-card__parents">Putra dari:<br /><strong>Bapak Dardiri &amp; Ibu Yatini</strong></p>
+            <a href="https://instagram.com/supriyd1920" target="_blank" rel="noopener noreferrer" class="couple-card__ig">
+              <i data-lucide="instagram"></i> @supriyd1920
+            </a>
+          </article>
+          <div class="couple-divider" data-aos="zoom-in" aria-hidden="true">
+            <span>&</span>
+          </div>
+          <article class="couple-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="couple-card__frame">
+              <div class="couple-card__glow"></div>
+              <img src="assets/images/hayu-kartikasari.webp" alt="Hayu Kartikasari" class="couple-card__img" width="480" height="600" loading="lazy" decoding="async" />
+            </div>
+            <h3 class="couple-card__name">Hayu Kartikasari</h3>
+            <p class="couple-card__label">Mempelai Wanita</p>
+            <p class="couple-card__parents">Putri dari:<br /><strong>Bapak Mimbar &amp; Ibu Sutrimah</strong></p>
+            <a href="https://instagram.com/kartiikahs" target="_blank" rel="noopener noreferrer" class="couple-card__ig">
+              <i data-lucide="instagram"></i> @kartiikahs
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EVENT -->
+    <section class="section section--event" id="event">
+      <div class="container">
+        <header class="section-head" data-aos="fade-up">
+          <span class="section-eyebrow">Rangkaian</span>
+          <h2 class="section-title">Resepsi Pernikahan</h2>
+        </header>
+        <div class="event-layout">
+          <div class="event-card glass-card" data-aos="fade-right" data-aos-duration="900">
+            <div class="event-card__spotlight"></div>
+            <span class="event-badge">Acara</span>
+            <h3 class="event-card__title">RESEPSI</h3>
+            <ul class="event-meta">
+              <li><i data-lucide="calendar-heart"></i> <span>30 Mei 2026</span></li>
+              <li><i data-lucide="map-pin"></i>
+                <span>Krajan Kidul RT 03 RW 02, Sumberejo, Kec. Pabelan, Kab. Semarang</span>
+              </li>
+            </ul>
+            <a class="btn btn--outline" href="https://maps.app.goo.gl/BwcLVTNJH2Xne81h6" target="_blank" rel="noopener noreferrer">
+              <i data-lucide="navigation"></i> Buka Google Maps
+            </a>
+          </div>
+          <div class="event-map glass-card" data-aos="fade-left" data-aos-duration="900">
+            <div class="event-map__spotlight"></div>
+            <iframe
+              title="Peta lokasi resepsi"
+              class="event-map__iframe"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=-7.338466%2C110.557399&amp;hl=id&amp;z=17&amp;output=embed"
+              allowfullscreen=""
+            ></iframe>
+            <p class="event-map__note">Titik lokasi mengikuti tautan undangan: Krajan Kidul RT 03 RW 02, Sumberejo, Kec. Pabelan, Kab. Semarang.</p>
+          </div>
+        </div>
+        <div class="timeline" data-aos="fade-up">
+          <h4 class="timeline__title">Timeline</h4>
+          <ol class="timeline__list">
+            <li class="timeline__item"><span class="time">10:00</span><span class="desc">Pembukaan &amp; sambutan</span></li>
+            <li class="timeline__item"><span class="time">11:00</span><span class="desc">Akad / prosesi inti</span></li>
+            <li class="timeline__item"><span class="time">12:00</span><span class="desc">Resepsi &amp; ramah tamah</span></li>
+            <li class="timeline__item"><span class="time">14:00</span><span class="desc">Sesi foto &amp; penutup</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOVE STORY -->
+    <section class="section section--story" id="story">
+      <div class="container">
+        <header class="section-head" data-aos="fade-up">
+          <span class="section-eyebrow">Perjalanan</span>
+          <h2 class="section-title">Love Story</h2>
+        </header>
+        <div class="story-track" id="storyTrack">
+          <div class="story-line" aria-hidden="true"><span class="story-line__glow"></span></div>
+          <article class="story-node" data-aos="fade-up">
+            <span class="story-node__dot"></span>
+            <h3>Pertemuan</h3>
+            <p>Takdir mempertemukan dua jiwa dalam satu ruang yang penuh senyum dan percakapan ringan yang tak terlupakan.</p>
+          </article>
+          <article class="story-node" data-aos="fade-up" data-aos-delay="80">
+            <span class="story-node__dot"></span>
+            <h3>Pendekatan</h3>
+            <p>Setiap pertemuan berikutnya semakin hangat, keyakinan tumbuh pelan namun pasti di antara keduanya.</p>
+          </article>
+          <article class="story-node" data-aos="fade-up" data-aos-delay="160">
+            <span class="story-node__dot"></span>
+            <h3>Lamaran</h3>
+            <p>Janji suci diucapkan di hadapan keluarga, membuka babak baru yang penui harapan.</p>
+          </article>
+          <article class="story-node" data-aos="fade-up" data-aos-delay="240">
+            <span class="story-node__dot"></span>
+            <h3>Menuju Pernikahan</h3>
+            <p>Kini kami mengundang Anda untuk menjadi saksi awal perjalanan panjang kami bersama.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section section--gallery" id="gallery">
+      <div class="container">
+        <header class="section-head" data-aos="fade-up">
+          <span class="section-eyebrow">Momen</span>
+          <h2 class="section-title">Galeri</h2>
+        </header>
+        <div class="gallery-masonry" id="galleryMasonry">
+          <figure class="gallery-item gallery-item--tall" data-aos="fade-up">
+            <img src="assets/images/gallery-01.webp" alt="Galeri 1" loading="lazy" decoding="async" class="gallery-img" width="800" height="1200" />
+          </figure>
+          <figure class="gallery-item" data-aos="fade-up" data-aos-delay="50">
+            <img src="assets/images/gallery-02.webp" alt="Galeri 2" loading="lazy" decoding="async" class="gallery-img" width="800" height="534" />
+          </figure>
+          <figure class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <img src="assets/images/gallery-03.webp" alt="Galeri 3" loading="lazy" decoding="async" class="gallery-img" width="800" height="800" />
+          </figure>
+          <figure class="gallery-item gallery-item--wide" data-aos="fade-up" data-aos-delay="80">
+            <img src="assets/images/gallery-04.webp" alt="Galeri 4" loading="lazy" decoding="async" class="gallery-img" width="1200" height="675" />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Tampilan gambar">
+      <button type="button" class="lightbox__close" id="lightboxClose" aria-label="Tutup">&times;</button>
+      <img src="" alt="" class="lightbox__img" id="lightboxImg" />
+    </div>
+
+    <!-- COUNTDOWN -->
+    <section class="section section--countdown" id="countdown">
+      <div class="container container--narrow">
+        <header class="section-head" data-aos="fade-up">
+          <span class="section-eyebrow">Hitung Mundur</span>
+          <h2 class="section-title">Menuju Hari Bahagia</h2>
+        </header>
+        <div class="cd-cards" data-aos="zoom-in">
+          <div class="cd-card"><span id="cdDays">00</span><small>Hari</small></div>
+          <div class="cd-card"><span id="cdHours">00</span><small>Jam</small></div>
+          <div class="cd-card"><span id="cdMinutes">00</span><small>Menit</small></div>
+          <div class="cd-card"><span id="cdSeconds">00</span><small>Detik</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section section--rsvp" id="rsvp">
+      <div class="container container--narrow">
+        <header class="section-head" data-aos="fade-up">
+          <span class="section-eyebrow">Konfirmasi</span>
+          <h2 class="section-title">RSVP</h2>
+          <p class="section-lead">Kehadiran dan doa Anda adalah hadiah terindah bagi kami.</p>
+        </header>
+        <form class="rsvp-form glass-card" id="rsvpForm" data-aos="fade-up" novalidate>
+          <div class="form-row">
+            <label for="guestName">Nama Tamu</label>
+            <input type="text" id="guestName" name="guestName" required autocomplete="name" placeholder="Nama lengkap" />
+            <span class="field-error" data-for="guestName"></span>
+          </div>
+          <div class="form-row">
+            <label for="guestPhone">Nomor WhatsApp</label>
+            <input type="tel" id="guestPhone" name="guestPhone" required inputmode="tel" placeholder="08xxxxxxxxxx" />
+            <span class="field-error" data-for="guestPhone"></span>
+          </div>
+          <div class="form-row">
+            <label for="guestCount">Jumlah Kehadiran</label>
+            <input type="number" id="guestCount" name="guestCount" min="1" max="20" value="1" required />
+            <span class="field-error" data-for="guestCount"></span>
+          </div>
+          <fieldset class="form-row">
+            <legend>Konfirmasi Kehadiran</legend>
+            <div class="radio-group">
+              <label class="radio"><input type="radio" name="attendance" value="Hadir" required /> Hadir</label>
+              <label class="radio"><input type="radio" name="attendance" value="Tidak Hadir" /> Tidak Hadir</label>
+            </div>
+            <span class="field-error" data-for="attendance"></span>
+          </fieldset>
+          <div class="form-row">
+            <label for="guestWish">Ucapan &amp; Doa</label>
+            <textarea id="guestWish" name="guestWish" rows="4" placeholder="Tuliskan ucapan dan doa restu Anda"></textarea>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full" id="rsvpSubmit">
+            <span class="btn-text">Kirim RSVP</span>
+            <span class="btn-loader" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Modal success -->
+    <div class="modal" id="modalSuccess" aria-hidden="true" role="dialog" aria-labelledby="modalSuccessTitle">
+      <div class="modal__backdrop"></div>
+      <div class="modal__box glass-card">
+        <i data-lucide="sparkles" class="modal__icon"></i>
+        <h3 id="modalSuccessTitle">Terima kasih</h3>
+        <p>RSVP Anda telah kami terima. Mohon doa restunya.</p>
+        <button type="button" class="btn btn--outline" id="modalSuccessClose">Tutup</button>
+      </div>
+    </div>
+
+    <!-- GIFT -->
+    <section class="section section--gift" id="gift">
+      <div class="container">
+        <header class="section-head" data-aos="fade-up">
+          <span class="section-eyebrow">Amplop Digital</span>
+          <h2 class="section-title">Wedding Gift</h2>
+        </header>
+        <div class="gift-grid">
+          <article class="gift-card glass-card" data-aos="fade-up">
+            <img src="assets/images/Bank_Central_Asia.png" alt="Logo BCA" class="gift-card__logo" width="160" height="48" loading="lazy" decoding="async" />
+            <h3>Bank BCA</h3>
+            <p class="gift-card__name">a.n Supriyadi</p>
+            <p class="gift-card__rek" data-copy="3201274981">3201274981</p>
+            <button type="button" class="btn btn--ghost copy-btn" data-copy="3201274981"><i data-lucide="copy"></i> Salin rekening</button>
+          </article>
+          <article class="gift-card glass-card" data-aos="fade-up" data-aos-delay="80">
+            <img src="assets/images/Bank_Negara_Indonesia.png" alt="Logo BNI" class="gift-card__logo" width="160" height="48" loading="lazy" decoding="async" />
+            <h3>Bank BNI</h3>
+            <p class="gift-card__name">a.n Hayu Kartikasari</p>
+            <p class="gift-card__rek" data-copy="1166990603">1166990603</p>
+            <button type="button" class="btn btn--ghost copy-btn" data-copy="1166990603"><i data-lucide="copy"></i> Salin rekening</button>
+          </article>
+          <article class="gift-card glass-card gift-card--qris" data-aos="fade-up" data-aos-delay="160">
+            <h3>QRIS</h3>
+            <div class="qris-placeholder" role="img" aria-label="Placeholder QRIS — unggah gambar QRIS Anda">
+              <span>QRIS</span>
+              <small>Ganti dengan gambar di assets/qris.png</small>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WISHES -->
+    <section class="section section--wishes" id="wishes">
+      <div class="container">
+        <header class="section-head" data-aos="fade-up">
+          <span class="section-eyebrow">Doa &amp; Ucapan</span>
+          <h2 class="section-title">Pesan Tamu</h2>
+        </header>
+        <div class="wishes-toolbar">
+          <button type="button" class="btn btn--outline btn--sm" id="btnRefreshWishes"><i data-lucide="refresh-cw"></i> Muat ulang</button>
+        </div>
+        <div class="wishes-list" id="wishesList">
+          <p class="wishes-placeholder" id="wishesPlaceholder">Memuat ucapan…</p>
+          <div class="wishes-cards" id="wishesCards"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+      <div class="footer__glow" aria-hidden="true"></div>
+      <img src="assets/images/footer-image.webp" alt="" class="footer__art" loading="lazy" decoding="async" width="1200" height="400" />
+      <p class="footer__thanks" data-aos="fade-up">Thank You</p>
+      <h2 class="footer__names" data-aos="fade-up" data-aos-delay="80">Supriyadi <span>&</span> Hayu Kartikasari</h2>
+      <p class="footer__quote" data-aos="fade-up" data-aos-delay="120">“Cinta adalah puisi yang ditulis oleh takdir.”</p>
+      <div class="footer__social" data-aos="fade-up" data-aos-delay="160">
+        <a href="https://instagram.com/supriyd1920" target="_blank" rel="noopener noreferrer" aria-label="Instagram mempelai pria"><i data-lucide="instagram"></i></a>
+        <a href="https://instagram.com/kartiikahs" target="_blank" rel="noopener noreferrer" aria-label="Instagram mempelai wanita"><i data-lucide="heart-handshake"></i></a>
+      </div>
+      <p class="footer__copy">&copy; 2026 — Dibuat dengan cinta.</p>
+    </footer>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="js/script.js" defer></script>
+</body>
+</html>
