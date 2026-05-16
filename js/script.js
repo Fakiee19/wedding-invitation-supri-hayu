@@ -7,7 +7,7 @@
   "use strict";
 
   /** @type {string} Ganti dengan URL Web App setelah deploy Apps Script */
-  const WEB_APP_URL = "https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec";
+  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwyaBYS8_MzkMPHxwcjlOFmD2TBMP8kaR8meQ0PlRD3az7ltOQQq5tP6J4cHGWHQKTAkA/exec";
 
   const WEDDING_EVENT = new Date("2026-05-30T10:00:00+07:00");
   const RSVP_STORAGE_KEY = "rsvp_sent_supri_hayu_2026";
@@ -111,92 +111,6 @@
     onScroll();
   }
 
-  /* ---------- Navbar ---------- */
-  function initNav() {
-    const header = $("#navHeader");
-    const nav = $("#mainNav");
-    const toggle = $("#navToggle");
-    if (!header) return;
-
-    function getScrollY() {
-      if (lenis != null) {
-        const v = lenis.scroll;
-        if (typeof v === "number" && !Number.isNaN(v)) return v;
-      }
-      return window.scrollY || document.documentElement.scrollTop;
-    }
-
-    let lastY = getScrollY();
-    /** Akumulasi delta scroll — cegah toggle is-hidden karena mikro-getar Lenis / smooth scroll */
-    let acc = 0;
-    const ACC_THRESH = 40;
-    const ACC_CLAMP = 80;
-    const TOP_REVEAL = 96;
-    const HIDE_MIN_Y = 180;
-
-    let navRaf = false;
-    function updateNavScroll() {
-      const y = getScrollY();
-      const dy = y - lastY;
-      lastY = y;
-
-      header.classList.toggle("is-scrolled", y > 40);
-
-      if (y < TOP_REVEAL) {
-        header.classList.remove("is-hidden");
-        acc = 0;
-        return;
-      }
-
-      acc += dy;
-      acc = Math.max(-ACC_CLAMP, Math.min(ACC_CLAMP, acc));
-
-      if (y > HIDE_MIN_Y) {
-        if (acc >= ACC_THRESH) {
-          header.classList.add("is-hidden");
-          acc = 0;
-        } else if (acc <= -ACC_THRESH) {
-          header.classList.remove("is-hidden");
-          acc = 0;
-        }
-      } else {
-        header.classList.remove("is-hidden");
-        acc = 0;
-      }
-    }
-
-    function scheduleNavScroll() {
-      if (navRaf) return;
-      navRaf = true;
-      requestAnimationFrame(() => {
-        navRaf = false;
-        updateNavScroll();
-      });
-    }
-
-    window.addEventListener("scroll", scheduleNavScroll, { passive: true });
-    if (lenis && typeof lenis.on === "function") {
-      lenis.on("scroll", scheduleNavScroll);
-    }
-    scheduleNavScroll();
-
-    toggle?.addEventListener("click", () => {
-      const open = nav?.classList.toggle("is-open");
-      toggle.classList.toggle("is-open", open);
-      toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      document.body.style.overflow = open ? "hidden" : "";
-    });
-
-    nav?.querySelectorAll("a").forEach((a) => {
-      a.addEventListener("click", () => {
-        nav.classList.remove("is-open");
-        toggle?.classList.remove("is-open");
-        toggle?.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
-    });
-  }
-
   /* ---------- Particles ---------- */
   function initParticles() {
     const canvas = document.getElementById("particles");
@@ -237,7 +151,7 @@
         if (p.y > h) p.y = 0;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(245, 230, 232, ${p.a})`;
+        ctx.fillStyle = `rgba(114, 47, 55, ${p.a * 0.45})`;
         ctx.fill();
       });
       requestAnimationFrame(frame);
@@ -321,7 +235,7 @@
     v.addEventListener("loadeddata", onReady, { once: true });
     v.addEventListener("canplay", onReady, { once: true });
     v.addEventListener("error", () => v.classList.remove("is-ready"), { passive: true });
-    v.play().catch(() => {});
+    v.play().catch(() => { });
   }
 
   /* ---------- Open invitation + music ---------- */
@@ -334,7 +248,7 @@
     const tryPlay = () => {
       if (!audio) return;
       audio.volume = 0.45;
-      audio.play().catch(() => {});
+      audio.play().catch(() => { });
     };
 
     btn?.addEventListener("click", () => {
@@ -350,7 +264,7 @@
     btnMusic?.addEventListener("click", () => {
       if (!audio) return;
       if (audio.paused) {
-        audio.play().catch(() => {});
+        audio.play().catch(() => { });
         btnMusic.classList.remove("is-muted");
       } else {
         audio.pause();
@@ -585,6 +499,7 @@
   async function loadWishes(force) {
     const cardsEl = $("#wishesCards");
     const ph = $("#wishesPlaceholder");
+    const refreshBtn = $("#btnRefreshWishes");
     if (!cardsEl) return;
 
     if (!isConfigured()) {
@@ -618,6 +533,7 @@
           ph.textContent = "Belum ada ucapan. Jadilah yang pertama melalui RSVP.";
           ph.classList.remove("is-hidden");
         }
+        if (refreshBtn) refreshBtn.style.display = "";
         return;
       }
 
@@ -632,11 +548,13 @@
         </article>`
         )
         .join("");
+      if (refreshBtn) refreshBtn.style.display = "";
     } catch {
       if (ph) {
         ph.textContent = "Gagal memuat ucapan. Tekan Muat ulang.";
         ph.classList.remove("is-hidden");
       }
+      if (refreshBtn) refreshBtn.style.display = "";
     }
   }
 
@@ -657,6 +575,26 @@
     setInterval(() => loadWishes(false), 60000);
   }
 
+  /* ---------- Guest name from URL ---------- */
+  function initGuestName() {
+    const params = new URLSearchParams(window.location.search);
+    const guestName = params.get("to") || "";
+    if (!guestName.trim()) return;
+
+    const wrap = document.getElementById("heroGuestWrap");
+    const nameEl = document.getElementById("heroGuestName");
+    if (!wrap || !nameEl) return;
+
+    nameEl.textContent = guestName.trim();
+    wrap.style.display = "";
+
+    // Otomatis isi field nama di form RSVP
+    const rsvpNameInput = document.getElementById("guestName");
+    if (rsvpNameInput && !rsvpNameInput.value) {
+      rsvpNameInput.value = guestName.trim();
+    }
+  }
+
   /* ---------- Lucide ---------- */
   function initLucide() {
     if (window.lucide) lucide.createIcons();
@@ -666,14 +604,21 @@
   function runLoaderAnim() {
     if (loaderAnimRan) return;
     loaderAnimRan = true;
+    const HOLD_MS = 2.4;
     if (typeof gsap === "undefined") {
-      setTimeout(hideLoader, 600);
+      setTimeout(hideLoader, 2800);
       return;
     }
     const tl = gsap.timeline({ onComplete: hideLoader });
-    tl.from(".loader__label", { y: 12, opacity: 0, duration: 0.6, ease: "power2.out" })
-      .from(".loader__line", { scaleX: 0, duration: 0.7, ease: "power2.inOut" }, "-=0.2")
-      .from(".loader__names", { y: 16, opacity: 0, duration: 0.8, ease: "power2.out" }, "-=0.3");
+    tl.from(".loader__label", { y: 12, opacity: 0, duration: 0.95, ease: "power2.out" })
+      .from(".loader__line", { scaleX: 0, duration: 1.05, ease: "power2.inOut" }, "-=0.25")
+      .from(
+        ".loader__logo-wrap",
+        { y: 8, opacity: 0, scale: 0.96, duration: 0.75, ease: "power2.out" },
+        "-=0.45"
+      )
+      .from(".loader__names", { y: 16, opacity: 0, duration: 1.15, ease: "power2.out" }, "-=0.3")
+      .to({}, { duration: HOLD_MS });
   }
 
   /* ---------- Boot ---------- */
@@ -707,16 +652,16 @@
       if (loader && !loader.classList.contains("is-hidden")) {
         hideLoader();
       }
-    }, 4500);
+    }, 9500);
 
     try {
+      initGuestName();
       tickCountdown();
       setInterval(tickCountdown, 1000);
 
       initHeroVideo();
       initLenis();
       initScrollProgress();
-      initNav();
       initParticles();
       initSpotlights();
       initParallax();

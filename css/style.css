@@ -1,24 +1,82 @@
 /* ============================================
-   Wedding Invitation — Luxury Dark Wine
+   Wedding Invitation — Light, white + burgundy
    ============================================ */
 
+@font-face {
+  font-family: "IvyOra Display";
+  src:
+    url("../assets/fonts/IvyOraDisplay-Regular.woff2") format("woff2"),
+    url("../assets/fonts/IvyOraDisplay-Regular.woff") format("woff"),
+    url("../assets/fonts/IvyOraDisplay-Regular.otf") format("opentype"),
+    url("../assets/fonts/IvyOraDisplay-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src:
+    url("../assets/fonts/PlusJakartaSans-Light.woff2") format("woff2"),
+    url("../assets/fonts/PlusJakartaSans-Light.woff") format("woff"),
+    url("../assets/fonts/PlusJakartaSans-Light.otf") format("opentype"),
+    url("../assets/fonts/PlusJakartaSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Carattere";
+  src:
+    url("../assets/fonts/Carattere-Regular.woff2") format("woff2"),
+    url("../assets/fonts/Carattere-Regular.woff") format("woff"),
+    url("../assets/fonts/Carattere-Regular.otf") format("opentype"),
+    url("../assets/fonts/Carattere-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IvyOra Display Light Italic";
+  src:
+    url("../assets/fonts/IvyOraDisplay-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
-  --wine-950: #140507;
-  --wine-900: #3b0d17;
-  --wine-800: #5a1424;
-  --wine-700: #7a1f33;
-  --blush: #f5e6e8;
-  --blush-dim: rgba(245, 230, 232, 0.72);
-  --gold: #c9a962;
-  --glass: rgba(59, 13, 23, 0.35);
-  --glass-border: rgba(245, 230, 232, 0.12);
-  --font-display: "Cormorant Garamond", "Bodoni Moda", Georgia, serif;
-  --font-body: "Montserrat", "Poppins", system-ui, sans-serif;
+  /* Foundation — dominan putih */
+  --wine-950: #ffffff;
+  --wine-900: #faf7f8;
+  --wine-800: #5a252f;
+  --wine-700: #722f37;
+  /* Teks */
+  --blush: #3a222b;
+  --blush-dim: rgba(58, 34, 43, 0.78);
+  --ink-muted: rgba(58, 34, 43, 0.58);
+  --ink-faint: rgba(58, 34, 43, 0.42);
+  --ink-ghost: rgba(58, 34, 43, 0.28);
+  --on-burgundy: #ffffff;
+  --gold: #a67c52;
+  /* Permukaan & kartu */
+  --glass: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(114, 47, 55, 0.15);
+  --card-fill: rgba(255, 255, 255, 0.94);
+  --card-shade: rgba(114, 47, 55, 0.04);
+  --font-display: "IvyOra Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-quote: "Carattere", cursive;
+  --font-names: "IvyOra Display Light Italic", Georgia, serif;
   --radius: 20px;
   --radius-sm: 12px;
-  --nav-h: 72px;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-glow: 0 0 60px rgba(122, 31, 51, 0.35);
+  --shadow-glow: 0 12px 40px rgba(114, 47, 55, 0.12);
+  --shadow-soft: 0 4px 24px rgba(45, 25, 32, 0.06);
+  /* Logo undangan: ton burgundi tanpa bayangan */
+  --logo-burgundy-filter: sepia(0.22) saturate(1.48) hue-rotate(326deg) brightness(0.96) contrast(1.04);
 }
 
 *,
@@ -29,6 +87,22 @@
 
 html {
   scroll-behavior: auto;
+  font-synthesis-weight: none;
+  overflow-x: hidden;
+}
+
+strong,
+b {
+  font-weight: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
 }
 
 html.lenis,
@@ -48,10 +122,10 @@ body {
   margin: 0;
   font-family: var(--font-body);
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.65;
   color: var(--blush-dim);
-  background: radial-gradient(120% 80% at 50% -10%, #5a1424 0%, #3b0d17 35%, #140507 70%);
+  background: linear-gradient(180deg, #ffffff 0%, var(--wine-900) 55%, #ffffff 100%);
   background-color: var(--wine-950);
   min-height: 100vh;
   overflow-x: hidden;
@@ -82,8 +156,8 @@ button {
   position: fixed;
   inset: 0;
   z-index: 9996;
-  opacity: 0.07;
-  mix-blend-mode: overlay;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -93,7 +167,7 @@ button {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.55;
+  opacity: 0.28;
 }
 
 /* --- Scroll progress --- */
@@ -104,8 +178,8 @@ button {
   height: 3px;
   width: 0%;
   z-index: 10002;
-  background: linear-gradient(90deg, var(--wine-700), var(--blush));
-  box-shadow: 0 0 20px rgba(245, 230, 232, 0.4);
+  background: linear-gradient(90deg, var(--wine-700), var(--wine-800));
+  box-shadow: 0 0 12px rgba(114, 47, 55, 0.25);
   transform-origin: left;
 }
 
@@ -117,7 +191,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: radial-gradient(circle at 50% 30%, #5a1424, #140507 65%);
+  background: radial-gradient(circle at 50% 30%, var(--wine-900), #ffffff 68%);
   transition: opacity 0.8s var(--ease-out-expo), visibility 0.8s;
 }
 
@@ -153,8 +227,27 @@ button {
 .loader__line {
   width: 120px;
   height: 1px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 0.85rem;
   background: linear-gradient(90deg, transparent, var(--blush), transparent);
+}
+
+.loader__logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 0.85rem;
+  max-width: min(168px, 46vw);
+  line-height: 0;
+}
+
+.loader__logo {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: clamp(40px, 9vw, 58px);
+  object-fit: contain;
+  filter: var(--logo-burgundy-filter);
 }
 
 .loader__names {
@@ -162,7 +255,7 @@ button {
   font-size: clamp(1.75rem, 5vw, 2.75rem);
   color: var(--blush);
   margin: 0;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .loader__names span {
@@ -171,87 +264,12 @@ button {
   margin: 0 0.35rem;
 }
 
-/* --- Nav --- */
-.nav-header {
+/* --- Musik mengambang (tanpa navbar) --- */
+.music-fab {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  bottom: clamp(1rem, 4vw, 1.75rem);
+  right: clamp(1rem, 4vw, 1.75rem);
   z-index: 9990;
-  height: var(--nav-h);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 clamp(1rem, 4vw, 3rem);
-  background: rgba(20, 5, 7, 0.45);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
-  border-bottom: 1px solid var(--glass-border);
-  transition: background 0.4s ease, transform 0.45s var(--ease-out-expo);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
-.nav-header.is-scrolled {
-  background: rgba(20, 5, 7, 0.78);
-}
-
-.nav-header.is-hidden {
-  transform: translateY(-100%);
-}
-
-.nav-logo {
-  display: flex;
-  align-items: center;
-  line-height: 0;
-}
-
-.nav-logo__img {
-  height: clamp(28px, 4.5vw, 42px);
-  width: auto;
-  max-width: min(200px, 46vw);
-  object-fit: contain;
-}
-
-.nav {
-  display: flex;
-  gap: 1.75rem;
-  align-items: center;
-}
-
-.nav a {
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--blush-dim);
-  position: relative;
-  padding: 0.25rem 0;
-  transition: color 0.3s ease;
-}
-
-.nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 1px;
-  background: var(--blush);
-  transition: width 0.35s var(--ease-out-expo);
-}
-
-.nav a:hover {
-  color: var(--blush);
-}
-
-.nav a:hover::after {
-  width: 100%;
-}
-
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
 }
 
 .btn-music {
@@ -259,10 +277,11 @@ button {
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--glass-border);
+  background: var(--card-fill);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--blush);
+  color: var(--wine-700);
   transition: background 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
@@ -286,62 +305,6 @@ button {
 
 .btn-music.is-muted .icon-music-off {
   display: block;
-}
-
-.nav-toggle {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  padding: 10px;
-  z-index: 10005;
-}
-
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--blush);
-  transition: transform 0.35s var(--ease-out-expo), opacity 0.25s;
-}
-
-.nav-toggle.is-open span:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.nav-toggle.is-open span:nth-child(2) {
-  opacity: 0;
-}
-
-.nav-toggle.is-open span:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-@media (max-width: 1024px) {
-  .nav {
-    position: fixed;
-    inset: 0;
-    top: var(--nav-h);
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    background: rgba(20, 5, 7, 0.96);
-    backdrop-filter: blur(20px);
-    transform: translateX(100%);
-    transition: transform 0.55s var(--ease-out-expo);
-    border-left: 1px solid var(--glass-border);
-  }
-
-  .nav.is-open {
-    transform: translateX(0);
-  }
-
-  .nav a {
-    font-size: 0.85rem;
-  }
-
-  .nav-toggle {
-    display: flex;
-  }
 }
 
 /* --- Main lock before open --- */
@@ -369,13 +332,8 @@ html.invite-locked body {
   pointer-events: none;
 }
 
-.main.is-locked .nav-header {
+.main.is-locked .music-fab {
   opacity: 0.35;
-  pointer-events: none;
-}
-
-.main.is-locked .nav-header .nav,
-.main.is-locked .nav-header .nav-toggle {
   pointer-events: none;
 }
 
@@ -387,7 +345,7 @@ html.invite-locked body {
   gap: 0.6rem;
   padding: 1rem 1.75rem;
   font-size: 0.72rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   border-radius: 999px;
@@ -401,29 +359,29 @@ html.invite-locked body {
 
 .btn--primary {
   background: linear-gradient(135deg, var(--wine-700), var(--wine-800));
-  color: var(--blush);
-  border: 1px solid rgba(245, 230, 232, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  color: var(--on-burgundy);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: var(--shadow-soft);
 }
 
 .btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 48px rgba(122, 31, 51, 0.45);
+  box-shadow: 0 12px 36px rgba(114, 47, 55, 0.22);
 }
 
 .btn--glow {
-  box-shadow: 0 0 40px rgba(122, 31, 51, 0.5), 0 8px 32px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 36px rgba(114, 47, 55, 0.2), var(--shadow-soft);
 }
 
 .btn--outline {
-  border: 1px solid var(--glass-border);
-  color: var(--blush);
-  background: rgba(59, 13, 23, 0.25);
+  border: 1px solid var(--wine-700);
+  color: var(--wine-700);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .btn--outline:hover {
-  background: var(--glass);
-  border-color: rgba(245, 230, 232, 0.28);
+  background: rgba(114, 47, 55, 0.06);
+  border-color: var(--wine-800);
 }
 
 .btn--ghost {
@@ -435,9 +393,9 @@ html.invite-locked body {
 }
 
 .btn--ghost:hover {
-  color: var(--blush);
+  color: var(--wine-700);
   border-color: var(--glass-border);
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(114, 47, 55, 0.04);
 }
 
 .btn--full {
@@ -458,7 +416,7 @@ html.invite-locked body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: calc(var(--nav-h) + 2rem) 1.5rem 4rem;
+  padding: clamp(2rem, 8vh, 5rem) 1.5rem 4rem;
 }
 
 .hero__media {
@@ -467,41 +425,56 @@ html.invite-locked body {
   overflow: hidden;
 }
 
-.hero__cinematic-bg {
+/* Hero split photos */
+.hero__photo {
   position: absolute;
-  inset: 0;
-  background-image: url("../assets/images/couple-hero.webp");
-  background-size: cover;
-  background-position: center;
-  filter: blur(4px) brightness(0.42) saturate(1.08);
-  transform: scale(1.08);
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
   z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero__video {
-  position: absolute;
-  inset: 0;
+.hero__photo--left {
+  left: 0;
+}
+
+.hero__photo--right {
+  right: 0;
+}
+
+.hero__photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  filter: brightness(0.5) saturate(1.05);
-  transform: scale(1.02);
-  opacity: 0;
-  transition: opacity 1.2s ease;
-  z-index: 1;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  filter: brightness(1) saturate(1.05);
 }
 
-.hero__video.is-ready {
-  opacity: 1;
+.hero__photo--left img {
+  object-position: left center;
 }
+
+.hero__photo--right img {
+  object-position: right center;
+}
+
 
 .hero__overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
   background:
-    linear-gradient(180deg, rgba(20, 5, 7, 0.5) 0%, rgba(59, 13, 23, 0.55) 45%, rgba(20, 5, 7, 0.92) 100%),
-    radial-gradient(ellipse 80% 50% at 50% 20%, rgba(122, 31, 51, 0.35), transparent);
+    /* vignette atas-bawah tipis */
+    linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 252, 253, 0.38) 40%, rgba(255, 255, 255, 0.55) 100%),
+    /* garis pemisah tipis di tengah */
+    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(255, 255, 255, 0.5) calc(50% - 0.5px), rgba(255, 255, 255, 0.5) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+    /* cahaya merah di tengah bawah */
+    radial-gradient(ellipse 60% 40% at 50% 80%, rgba(114, 47, 55, 0.08), transparent);
 }
 
 .hero__lights {
@@ -509,8 +482,8 @@ html.invite-locked body {
   inset: 0;
   z-index: 3;
   background:
-    radial-gradient(circle at 20% 30%, rgba(245, 230, 232, 0.12) 0%, transparent 35%),
-    radial-gradient(circle at 80% 60%, rgba(122, 31, 51, 0.4) 0%, transparent 40%);
+    radial-gradient(circle at 20% 30%, rgba(114, 47, 55, 0.07) 0%, transparent 38%),
+    radial-gradient(circle at 80% 60%, rgba(114, 47, 55, 0.09) 0%, transparent 42%);
   animation: floatLight 12s ease-in-out infinite alternate;
 }
 
@@ -519,6 +492,7 @@ html.invite-locked body {
     opacity: 0.7;
     transform: scale(1) translate(0, 0);
   }
+
   to {
     opacity: 1;
     transform: scale(1.05) translate(2%, -2%);
@@ -528,7 +502,13 @@ html.invite-locked body {
 .hero__content {
   position: relative;
   z-index: 4;
+  width: 100%;
   max-width: 920px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-reveal {
@@ -558,35 +538,87 @@ html.invite-locked body {
   letter-spacing: 0.55em;
   text-transform: uppercase;
   color: var(--blush-dim);
-  margin: 0 0 1.25rem;
+  margin: 0 0 0.65rem;
+}
+
+/* Nama tamu undangan */
+.hero__guest-wrap {
+  margin: 0 0 0.85rem;
+  text-align: center;
+}
+
+.hero__guest-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 0.2rem;
+}
+
+.hero__guest-name {
+  font-family: var(--font-names);
+  font-size: clamp(1.5rem, 4.5vw, 2.4rem);
+  color: var(--wine-700);
+  margin: 0;
+  line-height: 1.2;
+  text-shadow: 0 2px 16px rgba(114, 47, 55, 0.12);
+}
+
+.hero__logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 0.75rem;
+  width: 100%;
+  max-width: min(152px, 40vw);
+  line-height: 0;
+  text-align: center;
+}
+
+.hero__logo {
+  display: block;
+  margin-inline: auto;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: clamp(42px, 8vw, 68px);
+  object-fit: contain;
+  filter: var(--logo-burgundy-filter);
 }
 
 .hero__title {
   margin: 0 0 1rem;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.05;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
 }
 
 .hero__name {
-  display: block;
+  display: inline;
   font-size: clamp(2.5rem, 8vw, 5rem);
   color: var(--blush);
-  text-shadow: 0 8px 40px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.8);
+  flex: 0 0 auto;
+}
+
+.hero__name:first-child {
+  color: var(--wine-700);
 }
 
 .hero__and {
-  display: block;
-  font-family: "Bodoni Moda", var(--font-display);
+  display: inline-block;
+  font-family: var(--font-display);
   font-style: italic;
   font-size: clamp(2rem, 6vw, 3.5rem);
-  margin: 0.35rem 0;
-  background: linear-gradient(90deg, var(--blush), var(--wine-700), var(--blush));
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: shimmer 8s linear infinite;
+  line-height: 1;
+  margin: 0 1.5rem;
+  color: var(--wine-700);
+  text-shadow: 0 2px 16px rgba(114, 47, 55, 0.18);
 }
 
 @keyframes shimmer {
@@ -616,8 +648,9 @@ html.invite-locked body {
   min-width: 3.5rem;
   padding: 0.65rem 0.5rem;
   border-radius: var(--radius-sm);
-  background: rgba(20, 5, 7, 0.45);
+  background: var(--card-fill);
   border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
   backdrop-filter: blur(10px);
 }
 
@@ -625,6 +658,7 @@ html.invite-locked body {
   display: block;
   font-family: var(--font-display);
   font-size: 1.5rem;
+  font-weight: 400;
   color: var(--blush);
 }
 
@@ -653,7 +687,7 @@ html.invite-locked body {
   font-size: 0.65rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.45);
+  color: var(--ink-faint);
   animation: bounce 2.2s ease-in-out infinite;
 }
 
@@ -663,10 +697,12 @@ html.invite-locked body {
 }
 
 @keyframes bounce {
+
   0%,
   100% {
     transform: translateX(-50%) translateY(0);
   }
+
   50% {
     transform: translateX(-50%) translateY(6px);
   }
@@ -698,14 +734,14 @@ html.invite-locked body {
   font-size: 0.68rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.55);
+  color: var(--ink-muted);
   margin-bottom: 0.75rem;
 }
 
 .section-title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4.5vw, 3.25rem);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--blush);
   margin: 0;
   line-height: 1.1;
@@ -726,7 +762,7 @@ html.invite-locked body {
 
 /* Opening */
 .section--opening {
-  background: linear-gradient(180deg, transparent, rgba(59, 13, 23, 0.25), transparent);
+  background: linear-gradient(180deg, transparent, var(--card-shade), transparent);
 }
 
 .opening-quote {
@@ -740,7 +776,7 @@ html.invite-locked body {
   font-family: var(--font-display);
   font-size: clamp(4rem, 12vw, 8rem);
   line-height: 0;
-  color: rgba(245, 230, 232, 0.08);
+  color: rgba(114, 47, 55, 0.07);
   position: absolute;
   top: 0;
   left: 50%;
@@ -748,31 +784,27 @@ html.invite-locked body {
 }
 
 .opening-quote__text {
-  font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.8vw, 1.75rem);
-  line-height: 1.75;
+  font-family: var(--font-quote);
+  font-size: clamp(1.65rem, 4vw, 2.35rem);
+  line-height: 1.55;
   color: var(--blush);
   margin: 0 auto 1.5rem;
-  max-width: 38ch;
+  max-width: 42ch;
   font-weight: 400;
-}
-
-.opening-quote__text em {
-  font-style: italic;
-  color: var(--blush-dim);
+  font-style: normal;
 }
 
 .opening-quote__cite {
   font-size: 0.75rem;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.45);
+  color: var(--ink-faint);
   font-style: normal;
 }
 
 /* Couple */
 .section--couple {
-  background: radial-gradient(ellipse 70% 40% at 50% 0%, rgba(122, 31, 51, 0.2), transparent);
+  background: radial-gradient(ellipse 70% 40% at 50% 0%, rgba(114, 47, 55, 0.06), transparent);
 }
 
 .couple-grid {
@@ -789,6 +821,7 @@ html.invite-locked body {
 
   .couple-divider {
     order: 2;
+    margin: 0.75rem auto;
   }
 
   .couple-card:nth-child(1) {
@@ -797,6 +830,11 @@ html.invite-locked body {
 
   .couple-card:nth-child(3) {
     order: 3;
+  }
+
+  .hero__and {
+    margin-inline: auto;
+    text-align: center;
   }
 }
 
@@ -807,24 +845,25 @@ html.invite-locked body {
 .couple-card__frame {
   position: relative;
   margin: 0 auto 1.5rem;
-  max-width: 360px;
+  max-width: 300px;
   border-radius: var(--radius);
-  padding: 12px;
-  background: linear-gradient(145deg, rgba(245, 230, 232, 0.15), rgba(59, 13, 23, 0.3));
+  padding: 10px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(245, 236, 239, 0.85));
   border: 1px solid var(--glass-border);
   overflow: hidden;
   transition: transform 0.5s var(--ease-out-expo), box-shadow 0.5s;
 }
 
+
 .couple-card__frame:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), var(--shadow-glow);
+  box-shadow: var(--shadow-soft), var(--shadow-glow);
 }
 
 .couple-card__glow {
   position: absolute;
   inset: -40%;
-  background: radial-gradient(circle, rgba(122, 31, 51, 0.45), transparent 55%);
+  background: radial-gradient(circle, rgba(114, 47, 55, 0.14), transparent 55%);
   opacity: 0;
   transition: opacity 0.5s ease;
   pointer-events: none;
@@ -837,14 +876,17 @@ html.invite-locked body {
 .couple-card__img {
   border-radius: calc(var(--radius) - 8px);
   width: 100%;
-  aspect-ratio: 4/5;
+  aspect-ratio: 4/6;
   object-fit: cover;
   filter: contrast(1.02) saturate(0.95);
 }
 
+
 .couple-card__name {
-  font-family: var(--font-display);
+  font-family: var(--font-names);
   font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 300;
+  font-style: italic;
   color: var(--blush);
   margin: 0 0 0.35rem;
 }
@@ -853,7 +895,7 @@ html.invite-locked body {
   font-size: 0.68rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.5);
+  color: var(--ink-muted);
   margin: 0 0 1rem;
 }
 
@@ -896,10 +938,10 @@ html.invite-locked body {
   font-family: var(--font-display);
   font-size: 1.75rem;
   font-style: italic;
-  color: var(--blush);
+  color: var(--wine-700);
   border: 1px solid var(--glass-border);
-  background: rgba(59, 13, 23, 0.4);
-  box-shadow: inset 0 0 40px rgba(122, 31, 51, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--shadow-soft), inset 0 0 32px rgba(114, 47, 55, 0.06);
 }
 
 /* Glass card */
@@ -935,7 +977,7 @@ html.invite-locked body {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(245, 230, 232, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(114, 47, 55, 0.06) 0%, transparent 70%);
   top: var(--sy, 20%);
   left: var(--sx, 30%);
   transform: translate(-50%, -50%);
@@ -952,7 +994,7 @@ html.invite-locked body {
   font-size: 0.65rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.55);
+  color: var(--ink-muted);
 }
 
 .event-card__title {
@@ -993,7 +1035,7 @@ html.invite-locked body {
 
 .event-map__note {
   font-size: 0.72rem;
-  color: rgba(245, 230, 232, 0.45);
+  color: var(--ink-faint);
   margin: 0.75rem 0 0;
   line-height: 1.5;
 }
@@ -1029,7 +1071,8 @@ html.invite-locked body {
   padding: 1rem 1.25rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--glass-border);
-  background: rgba(20, 5, 7, 0.35);
+  background: var(--card-fill);
+  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -1084,19 +1127,20 @@ html.invite-locked body {
 
 .story-line {
   position: absolute;
-  top: 2.5rem;
+  top: 1.15rem;
   left: 5%;
   right: 5%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(245, 230, 232, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(114, 47, 55, 0.12), transparent);
   pointer-events: none;
 }
+
 
 .story-line__glow {
   position: absolute;
   width: 35%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(122, 31, 51, 0.9), rgba(245, 230, 232, 0.5), transparent);
+  background: linear-gradient(90deg, transparent, rgba(114, 47, 55, 0.45), rgba(255, 255, 255, 0.6), transparent);
   filter: blur(4px);
   animation: glowMove 8s ease-in-out infinite alternate;
 }
@@ -1105,6 +1149,7 @@ html.invite-locked body {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(190%);
   }
@@ -1114,6 +1159,7 @@ html.invite-locked body {
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(120%);
   }
@@ -1124,14 +1170,15 @@ html.invite-locked body {
   padding: 1.5rem 1rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--glass-border);
-  background: rgba(20, 5, 7, 0.4);
+  background: var(--card-fill);
+  box-shadow: var(--shadow-soft);
   transition: transform 0.4s var(--ease-out-expo), border-color 0.4s, box-shadow 0.4s;
 }
 
 .story-node:hover {
   transform: translateY(-4px);
-  border-color: rgba(245, 230, 232, 0.22);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  border-color: rgba(114, 47, 55, 0.22);
+  box-shadow: 0 12px 32px rgba(45, 28, 35, 0.08);
 }
 
 .story-node__dot {
@@ -1143,7 +1190,7 @@ html.invite-locked body {
   height: 12px;
   border-radius: 50%;
   background: var(--wine-700);
-  box-shadow: 0 0 20px rgba(245, 230, 232, 0.45);
+  box-shadow: 0 0 16px rgba(114, 47, 55, 0.35);
 }
 
 @media (max-width: 900px) {
@@ -1167,70 +1214,173 @@ html.invite-locked body {
   color: var(--blush-dim);
 }
 
-/* Gallery */
+/* Gallery – Collage */
 .section--gallery {
-  background: linear-gradient(180deg, transparent, rgba(20, 5, 7, 0.5));
+  background: linear-gradient(180deg, transparent, var(--card-shade));
 }
 
-.gallery-masonry {
-  columns: 3;
-  column-gap: 1rem;
-}
-
-@media (max-width: 900px) {
-  .gallery-masonry {
-    columns: 2;
-  }
-}
-
-@media (max-width: 520px) {
-  .gallery-masonry {
-    columns: 1;
-  }
-}
-
-.gallery-item {
-  break-inside: avoid;
-  margin-bottom: 1rem;
-  border-radius: var(--radius-sm);
+.gallery-collage {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr;
+  grid-template-rows: 280px 220px;
+  gap: 10px;
+  border-radius: var(--radius);
   overflow: hidden;
+}
+
+/* A: portrait besar kiri — rentang 2 baris */
+.collage-item--a {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+/* B: landscape kanan atas */
+.collage-item--b {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* C: square tengah kanan */
+.collage-item--c {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* D: foto lebar bawah — 2 kolom kanan */
+.collage-item--d {
+  grid-column: 2 / 4;
+  grid-row: 2;
+}
+
+/* Base styles setiap item */
+.collage-item {
   position: relative;
+  overflow: hidden;
   cursor: pointer;
-  border: 1px solid var(--glass-border);
+  margin: 0;
+  border-radius: 6px;
 }
 
-.gallery-item::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(20, 5, 7, 0.75));
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.gallery-item:hover::after {
-  opacity: 1;
-}
-
-.gallery-img {
+.collage-item .gallery-img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  transition: transform 0.8s var(--ease-out-expo);
+  transition: transform 0.7s var(--ease-out-expo);
   transform-origin: center;
 }
 
-.gallery-item:hover .gallery-img {
-  transform: scale(1.06);
+/* Overlay gradient gelap saat hover */
+.collage-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg,
+      transparent 40%,
+      rgba(45, 20, 28, 0.55));
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  z-index: 1;
 }
 
-.gallery-item--tall .gallery-img {
-  min-height: 420px;
-  object-fit: cover;
+.collage-item:hover::before {
+  opacity: 1;
 }
 
-.gallery-item--wide {
-  column-span: all;
+.collage-item:hover .gallery-img {
+  transform: scale(1.07);
 }
+
+/* Caption label frosted glass */
+.collage-caption {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 0.9rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1rem;
+  color: #fff;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-out-expo);
+  z-index: 2;
+}
+
+.collage-item:hover .collage-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Dekorasi sudut tipis pada item A */
+.collage-item--a::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 36px;
+  height: 36px;
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-left: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-radius: 3px 0 0 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Responsive: 2 kolom di tablet */
+@media (max-width: 768px) {
+  .gallery-collage {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 180px 180px;
+  }
+
+  .collage-item--a {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .collage-item--b {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .collage-item--c {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .collage-item--d {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .collage-caption {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Responsive: 1 kolom di mobile */
+@media (max-width: 480px) {
+  .gallery-collage {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 220px);
+  }
+
+  .collage-item--a,
+  .collage-item--b,
+  .collage-item--c,
+  .collage-item--d {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
 
 /* Lightbox */
 .lightbox {
@@ -1240,7 +1390,7 @@ html.invite-locked body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(20, 5, 7, 0.92);
+  background: rgba(255, 253, 254, 0.94);
   backdrop-filter: blur(12px);
   opacity: 0;
   visibility: hidden;
@@ -1257,7 +1407,7 @@ html.invite-locked body {
   max-width: min(92vw, 1100px);
   max-height: 88vh;
   border-radius: var(--radius-sm);
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 24px 72px rgba(45, 28, 35, 0.12);
   transform: scale(0.94);
   transition: transform 0.5s var(--ease-out-expo);
 }
@@ -1288,7 +1438,7 @@ html.invite-locked body {
 
 /* Countdown section */
 .section--countdown {
-  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(122, 31, 51, 0.35), transparent 65%);
+  background: radial-gradient(ellipse 60% 50% at 50% 50%, rgba(114, 47, 55, 0.07), transparent 65%);
 }
 
 .cd-cards {
@@ -1307,27 +1457,26 @@ html.invite-locked body {
   text-align: center;
   padding: 1.75rem 1rem;
   border-radius: var(--radius);
-  background: rgba(20, 5, 7, 0.55);
-  border: 1px solid rgba(245, 230, 232, 0.12);
-  box-shadow:
-    0 0 30px rgba(122, 31, 51, 0.25),
-    inset 0 0 40px rgba(59, 13, 23, 0.35);
+  background: var(--card-fill);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s;
 }
 
 .cd-card:hover {
   transform: translateY(-4px);
   box-shadow:
-    0 0 50px rgba(245, 230, 232, 0.12),
-    0 0 40px rgba(122, 31, 51, 0.45);
+    0 12px 36px rgba(114, 47, 55, 0.1),
+    var(--shadow-soft);
 }
 
 .cd-card span {
   display: block;
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 400;
   color: var(--blush);
-  text-shadow: 0 0 24px rgba(245, 230, 232, 0.25);
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.9);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1335,12 +1484,12 @@ html.invite-locked body {
   font-size: 0.65rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.55);
+  color: var(--ink-muted);
 }
 
 /* RSVP */
 .section--rsvp {
-  background: linear-gradient(180deg, transparent, rgba(59, 13, 23, 0.2));
+  background: linear-gradient(180deg, transparent, var(--card-shade));
 }
 
 .rsvp-form .form-row {
@@ -1353,7 +1502,7 @@ html.invite-locked body {
   font-size: 0.68rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.65);
+  color: var(--ink-muted);
   margin-bottom: 0.5rem;
 }
 
@@ -1371,23 +1520,24 @@ html.invite-locked body {
   padding: 1rem 1.15rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--glass-border);
-  background: rgba(20, 5, 7, 0.45);
+  background: #ffffff;
   color: var(--blush);
   font-family: var(--font-body);
   font-size: 0.95rem;
+  font-weight: 300;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .rsvp-form input:focus,
 .rsvp-form textarea:focus {
   outline: none;
-  border-color: rgba(245, 230, 232, 0.35);
-  box-shadow: 0 0 0 3px rgba(122, 31, 51, 0.35);
+  border-color: rgba(114, 47, 55, 0.35);
+  box-shadow: 0 0 0 3px rgba(114, 47, 55, 0.12);
 }
 
 .rsvp-form input::placeholder,
 .rsvp-form textarea::placeholder {
-  color: rgba(245, 230, 232, 0.35);
+  color: var(--ink-ghost);
 }
 
 .radio-group {
@@ -1429,8 +1579,8 @@ html.invite-locked body {
   display: none;
   width: 22px;
   height: 22px;
-  border: 2px solid rgba(245, 230, 232, 0.25);
-  border-top-color: var(--blush);
+  border: 2px solid rgba(114, 47, 55, 0.2);
+  border-top-color: var(--wine-700);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
@@ -1472,7 +1622,7 @@ html.invite-locked body {
 .modal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(20, 5, 7, 0.8);
+  background: rgba(45, 28, 35, 0.35);
   backdrop-filter: blur(8px);
 }
 
@@ -1482,6 +1632,10 @@ html.invite-locked body {
   max-width: 400px;
   text-align: center;
   padding: 2.5rem 2rem;
+  background: var(--card-fill);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-glow);
 }
 
 .modal__icon {
@@ -1505,26 +1659,32 @@ html.invite-locked body {
 }
 
 /* Gift */
-.gift-card__logo {
-  display: block;
-  height: 44px;
-  width: auto;
-  max-width: 200px;
-  object-fit: contain;
-  object-position: left center;
-  margin: 0 0 1rem;
-}
 
 .gift-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 360px));
   gap: 1.25rem;
+  justify-content: center;
 }
+
 
 @media (max-width: 900px) {
   .gift-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.gift-card {
+  text-align: center;
+}
+
+.gift-card__logo {
+  display: block;
+  max-width: 80px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin: 0 auto 1rem;
 }
 
 .gift-card h3 {
@@ -1533,6 +1693,7 @@ html.invite-locked body {
   color: var(--blush);
   margin: 0 0 0.5rem;
 }
+
 
 .gift-card__name {
   font-size: 0.85rem;
@@ -1543,6 +1704,7 @@ html.invite-locked body {
 .gift-card__rek {
   font-family: var(--font-display);
   font-size: 1.65rem;
+  font-weight: 400;
   letter-spacing: 0.12em;
   color: var(--blush);
   margin: 0 0 1rem;
@@ -1553,24 +1715,7 @@ html.invite-locked body {
   border-color: rgba(168, 245, 192, 0.35);
 }
 
-.qris-placeholder {
-  min-height: 180px;
-  border-radius: var(--radius-sm);
-  border: 1px dashed var(--glass-border);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  color: rgba(245, 230, 232, 0.45);
-  text-align: center;
-  padding: 1rem;
-}
 
-.qris-placeholder span {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-}
 
 /* Wishes */
 .wishes-list {
@@ -1580,9 +1725,10 @@ html.invite-locked body {
 
 .wishes-toolbar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-bottom: 1.25rem;
 }
+
 
 .wishes-cards {
   display: flex;
@@ -1596,7 +1742,7 @@ html.invite-locked body {
 
 .wishes-placeholder {
   text-align: center;
-  color: rgba(245, 230, 232, 0.45);
+  color: var(--ink-faint);
   padding: 2rem;
 }
 
@@ -1604,7 +1750,8 @@ html.invite-locked body {
   padding: 1.25rem 1.5rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--glass-border);
-  background: rgba(20, 5, 7, 0.45);
+  background: var(--card-fill);
+  box-shadow: var(--shadow-soft);
   backdrop-filter: blur(12px);
   animation: wishIn 0.6s var(--ease-out-expo) both;
 }
@@ -1614,6 +1761,7 @@ html.invite-locked body {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -1623,6 +1771,7 @@ html.invite-locked body {
 .wish-card__name {
   font-family: var(--font-display);
   font-size: 1.2rem;
+  font-weight: 400;
   color: var(--blush);
   margin: 0 0 0.25rem;
 }
@@ -1631,7 +1780,7 @@ html.invite-locked body {
   font-size: 0.7rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.4);
+  color: var(--ink-faint);
   margin: 0 0 0.75rem;
 }
 
@@ -1653,7 +1802,7 @@ html.invite-locked body {
 .footer__glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(122, 31, 51, 0.4), transparent 55%);
+  background: radial-gradient(circle at 50% 0%, rgba(114, 47, 55, 0.08), transparent 55%);
   pointer-events: none;
   z-index: 0;
 }
@@ -1675,14 +1824,14 @@ html.invite-locked body {
   font-size: 0.72rem;
   letter-spacing: 0.5em;
   text-transform: uppercase;
-  color: rgba(245, 230, 232, 0.5);
+  color: var(--ink-muted);
   margin: 0 0 1rem;
 }
 
 .footer__names {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 4vw, 2.75rem);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--blush);
   margin: 0 0 1rem;
 }
@@ -1704,20 +1853,32 @@ html.invite-locked body {
 
 .footer__social {
   display: flex;
-  justify-content: center;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
   margin-bottom: 2rem;
 }
 
-.footer__social a {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--glass-border);
+
+
+.footer__social-links {
   display: flex;
-  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
   justify-content: center;
+}
+
+.footer__social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 99px;
+  border: 1px solid var(--glass-border);
   color: var(--blush);
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
   transition: background 0.3s, transform 0.3s;
 }
 
@@ -1726,20 +1887,29 @@ html.invite-locked body {
   transform: translateY(-3px);
 }
 
-.footer__social svg {
-  width: 22px;
-  height: 22px;
+.footer__social-icon svg {
+  width: 36px;
+  height: 36px;
+  color: var(--blush);
+  opacity: 0.7;
+}
+
+.footer__social a svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
 }
 
 .footer__copy {
   font-size: 0.72rem;
   letter-spacing: 0.15em;
-  color: rgba(245, 230, 232, 0.35);
+  color: var(--ink-ghost);
   margin: 0;
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {

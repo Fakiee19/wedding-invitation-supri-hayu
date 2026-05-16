@@ -14,7 +14,7 @@
  */
 
 /** @type {string} Wajib: ID Spreadsheet dari URL */
-const SPREADSHEET_ID = "ISI_SPREADSHEET_ID_ANDA";
+const SPREADSHEET_ID = "14bm56oU6hkgCQLFGtuJUDBcrJKiOEngP9m_1lWVwG54";
 
 const SHEET_RSVP = "RSVP";
 
