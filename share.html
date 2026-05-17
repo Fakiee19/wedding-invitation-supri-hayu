@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Undangan WA - Supri & Hayu</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fce4ec;
+            /* Warna pink lembut disesuaikan dengan tema wedding */
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            text-align: center;
+            color: #6a1b29;
+            /* Warna burgundy */
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #6a1b29;
+        }
+
+        textarea {
+            height: 220px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            background-color: #25D366;
+            /* Warna khas WhatsApp */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: opacity 0.3s;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-secondary {
+            background-color: #6a1b29;
+        }
+
+        /* Burgundy */
+        .btn-outline {
+            background-color: transparent;
+            color: #6a1b29;
+            border: 2px solid #6a1b29;
+        }
+
+        .btn-outline:hover {
+            background-color: #f9f0f2;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            display: none;
+        }
+
+        .note {
+            font-size: 12.5px;
+            color: #777;
+            margin-top: 6px;
+        }
+
+        .header-icon {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header-icon">💌</div>
+        <h2>Generator Pesan WhatsApp</h2>
+
+        <div class="form-group" style="display: none;">
+            <label for="domain">Tautan Website Undangan Anda</label>
+            <input type="text" id="domain" value="https://fakiee19.github.io/wedding-invitation-supri-hayu/" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Nama Tamu Yang Diundang</label>
+            <input type="text" id="name" placeholder="Misal: Budi Santoso / Keluarga Bapak Ahmad">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Nomor WA Tamu (Opsional)</label>
+            <input type="number" id="phone" placeholder="Misal: 628123456789">
+            <div class="note">Mulai dengan angka <strong>62</strong>. Jika dikosongkan, Anda tetap bisa menyalin (copy)
+                teks pesannya saja.</div>
+        </div>
+
+        <div class="form-group">
+            <label for="template">Template Pesan</label>
+            <textarea id="template">Bismillahirrahmanirrahim.
+Assalamu'alaikum Warahmatullahi Wabarakatuh.
+
+Tanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i [NAMA] untuk hadir di acara pernikahan kami:
+
+Supriyadi & Hayu Kartikasari
+
+Untuk detail acara, lokasi, dan RSVP, mohon berkenan membuka tautan undangan berikut:
+[LINK]
+
+Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir. Atas perhatian serta doa restunya, kami ucapkan terima kasih.
+
+Wassalamu'alaikum Warahmatullahi Wabarakatuh.
+Hormat kami,
+Supriyadi & Hayu Kartikasari</textarea>
+            <div class="note">Anda bisa mengedit kata-kata di atas sebebasnya. Jangan hapus teks <strong>[NAMA]</strong>
+                dan <strong>[LINK]</strong> karena akan otomatis terganti.</div>
+        </div>
+
+        <button class="btn btn-secondary" onclick="generateLink()">Buat Pesan & Link</button>
+
+        <div id="resultBox" class="result">
+            <strong style="color: #444;">Hasil Pesan:</strong>
+            <pre id="finalText"
+                style="white-space: pre-wrap; font-family: inherit; margin-top: 10px; font-size: 14.5px; color: #333;"></pre>
+
+            <button class="btn btn-outline" style="margin-top: 15px;" onclick="copyText()">1. Copy Teksnya Saja</button>
+            <a href="#" id="waLink" target="_blank" class="btn" style="display: none; margin-top: 10px;">2. Buka & Kirim
+                Langsung di WhatsApp</a>
+        </div>
+    </div>
+
+    <script>
+        function generateLink() {
+            const domain = document.getElementById('domain').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const template = document.getElementById('template').value;
+
+            if (!domain || !name) {
+                alert('Domain dan Nama Tamu wajib diisi terlebih dahulu!');
+                return;
+            }
+
+            // Hapus garis miring di akhir url jika ada
+            const cleanDomain = domain.replace(/\/$/, "");
+
+            // Buat link personal dengan fitur ?to=
+            const personalLink = `${cleanDomain}/?to=${encodeURIComponent(name)}`;
+
+            // Ganti placeholder template
+            let finalText = template.replace('[NAMA]', name).replace('[LINK]', personalLink);
+
+            // Tampilkan kotak hasil
+            document.getElementById('resultBox').style.display = 'block';
+            document.getElementById('finalText').textContent = finalText;
+
+            // Siapkan tombol WA Link jika nomor diisi
+            const waLinkBtn = document.getElementById('waLink');
+            if (phone) {
+                let cleanPhone = phone.replace(/\D/g, ''); // Hapus selain angka
+                if (cleanPhone.startsWith('0')) {
+                    cleanPhone = '62' + cleanPhone.substring(1); // Ubah 0 jadi 62
+                }
+                const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(finalText)}`;
+                waLinkBtn.href = waUrl;
+                waLinkBtn.style.display = 'inline-block';
+            } else {
+                waLinkBtn.style.display = 'none';
+            }
+        }
+
+        function copyText() {
+            const textToCopy = document.getElementById('finalText').textContent;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Teks berhasil di-copy! Silakan paste (tempel) di chat WhatsApp Anda.');
+            }).catch(err => {
+                alert('Gagal meng-copy teks.');
+            });
+        }
+    </script>
+
+</body>
+
+</html>

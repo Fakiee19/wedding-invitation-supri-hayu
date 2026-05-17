@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="id">
 
 <head>
@@ -19,6 +19,18 @@
   <meta property="og:image" content="https://your-domain.vercel.app/assets/images/couple-hero.webp" />
   <meta property="og:locale" content="id_ID" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/IvyOraDisplay-Regular.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/woff2" href="assets/fonts/PlusJakartaSans-Light.woff2" crossorigin />
+  <link rel="preload" as="font" type="font/ttf" href="assets/fonts/IvyOraDisplay-LightItalic.ttf" crossorigin />
+  <link rel="preload" as="image" href="assets/images/logo-pernikahan.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/images/hero%20kiri.webp" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/images/hero%20kanan.webp" fetchpriority="high" />
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="assets/images/favicon.png" type="image/png" />
@@ -33,9 +45,13 @@
       <div class="loader__line"></div>
       <div class="loader__logo-wrap">
         <img src="assets/images/logo-pernikahan.png" alt="" class="loader__logo" width="180" height="54" loading="eager"
-          decoding="async" />
+          fetchpriority="high" decoding="sync" />
       </div>
-      <p class="loader__names">SUPRI <span>&</span> TIKA</p>
+      <p class="loader__names"><span
+          style="color: #722f37; font-style: normal; opacity: 1; font-size: inherit; font-family: inherit; margin: 0;">SUPRI</span>
+        <span>&</span>
+        TIKA
+      </p>
     </div>
   </div>
 
@@ -47,8 +63,7 @@
 
   <!-- Music -->
   <audio id="bgMusic" loop preload="metadata" playsinline>
-    <!-- Ganti src dengan file instrumental Anda di /assets/music.mp3 -->
-    <source src="assets/music.mp3" type="audio/mpeg" />
+    <source src="assets/music/Bandaneira-Sampai%20Jadi%20Debu.mp3" type="audio/mpeg" />
   </audio>
 
   <button type="button" class="btn-music music-fab" id="btnMusic" aria-label="Putar atau jeda musik latar">
@@ -61,42 +76,54 @@
     <section class="hero" id="hero">
       <div class="hero__media">
         <div class="hero__photo hero__photo--left" aria-hidden="true">
-          <img src="assets/images/hero kiri.webp" alt="" />
+          <img src="assets/images/hero kiri.webp" alt="" loading="eager" fetchpriority="high" decoding="sync" />
         </div>
         <div class="hero__photo hero__photo--right" aria-hidden="true">
-          <img src="assets/images/hero kanan.webp" alt="" />
+          <img src="assets/images/hero kanan.webp" alt="" loading="eager" fetchpriority="high" decoding="sync" />
         </div>
         <div class="hero__overlay"></div>
         <div class="hero__lights" aria-hidden="true"></div>
       </div>
       <div class="hero__content">
-        <p class="hero__eyebrow hero-reveal" style="--d:0.05s">The Wedding Of</p>
-        <div class="hero__logo-wrap hero-reveal" style="--d:0.1s">
+        <p class="hero__eyebrow hero-reveal" style="--d: 0.05s">
+          The Wedding Of
+        </p>
+        <div class="hero__logo-wrap hero-reveal" style="--d: 0.1s">
           <img src="assets/images/logo-pernikahan.png" alt="Monogram pernikahan Supriyadi &amp; Hayu Kartikasari"
-            class="hero__logo" width="180" height="54" loading="eager" decoding="async" />
+            class="hero__logo" width="180" height="54" loading="eager" fetchpriority="high" decoding="sync" />
         </div>
         <h1 class="hero__title">
-          <span class="hero__name hero-reveal" style="--d:0.14s">SUPRIYADI</span>
-          <span class="hero__and hero-reveal" style="--d:0.22s">&</span>
-          <span class="hero__name hero-reveal" style="--d:0.3s">HAYU KARTIKASARI</span>
+          <span class="hero__name hero-reveal" style="--d: 0.14s">SUPRI</span>
+          <span class="hero__and hero-reveal" style="--d: 0.22s">&</span>
+          <span class="hero__name hero-reveal" style="--d: 0.3s">TIKA</span>
         </h1>
-        <p class="hero__date hero-reveal" style="--d:0.38s">Sabtu, 30 Mei 2026</p>
-        <div class="hero__countdown hero-countdown hero-reveal" id="heroCountdown" style="--d:0.46s">
-          <div class="hero-countdown__item"><span id="cdDaysH">00</span><small>Hari</small></div>
+        <p class="hero__date hero-reveal" style="--d: 0.38s">
+          Sabtu, 30 Mei 2026
+        </p>
+        <div class="hero__countdown hero-countdown hero-reveal" id="heroCountdown" style="--d: 0.46s">
+          <div class="hero-countdown__item">
+            <span id="cdDaysH">00</span><small>Hari</small>
+          </div>
           <div class="hero-countdown__sep">:</div>
-          <div class="hero-countdown__item"><span id="cdHoursH">00</span><small>Jam</small></div>
+          <div class="hero-countdown__item">
+            <span id="cdHoursH">00</span><small>Jam</small>
+          </div>
           <div class="hero-countdown__sep">:</div>
-          <div class="hero-countdown__item"><span id="cdMinsH">00</span><small>Menit</small></div>
+          <div class="hero-countdown__item">
+            <span id="cdMinsH">00</span><small>Menit</small>
+          </div>
           <div class="hero-countdown__sep">:</div>
-          <div class="hero-countdown__item"><span id="cdSecsH">00</span><small>Detik</small></div>
+          <div class="hero-countdown__item">
+            <span id="cdSecsH">00</span><small>Detik</small>
+          </div>
         </div>
-        <div class="hero__guest-wrap hero-reveal" id="heroGuestWrap" style="--d:0.5s;display:none">
+        <div class="hero__guest-wrap hero-reveal" id="heroGuestWrap" style="--d: 0.5s; display: none">
           <p class="hero__guest-label">Kepada Yth,</p>
           <p class="hero__guest-name" id="heroGuestName"></p>
         </div>
-        <button type="button" class="btn btn--primary btn--glow hero-reveal" id="btnOpenInvite" style="--d:0.58s">
+        <button type="button" class="btn btn--primary btn--glow hero-reveal" id="btnOpenInvite"
+          style="--d: 0.58s; padding: 0.8rem 1.45rem; font-size: 0.68rem">
           <span>Buka Undangan</span>
-          <i data-lucide="heart"></i>
         </button>
       </div>
       <div class="hero__scroll-hint" aria-hidden="true">
@@ -111,8 +138,8 @@
         <blockquote class="opening-quote" data-aos="fade-up" data-aos-duration="1200">
           <span class="opening-quote__deco" aria-hidden="true">“</span>
           <p class="opening-quote__text">
-            Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan pasangan-pasangan untukmu agar kamu merasa
-            tenteram kepadanya.
+            Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan
+            pasangan-pasangan untukmu agar kamu merasa tenteram kepadanya.
           </p>
           <cite class="opening-quote__cite">QS. Ar-Rum: 21</cite>
         </blockquote>
@@ -124,7 +151,10 @@
       <div class="container">
         <header class="section-head" data-aos="fade-up">
           <span class="section-eyebrow">Mempelai</span>
-          <h2 class="section-title">Bride <span class="amp">&</span> Groom</h2>
+          <h2 class="section-title">
+            Bride <span class="amp">&</span>
+            <span style="color: var(--wine-700)">Groom</span>
+          </h2>
         </header>
         <div class="couple-grid">
           <article class="couple-card" data-aos="fade-up" data-aos-delay="100">
@@ -135,7 +165,9 @@
             </div>
             <h3 class="couple-card__name">Supriyadi</h3>
             <p class="couple-card__label">Mempelai Pria</p>
-            <p class="couple-card__parents">Putra dari:<br /><strong>Bapak Dardiri &amp; Ibu Yatini</strong></p>
+            <p class="couple-card__parents">
+              Putra dari:<br /><strong>Bapak Dardiri &amp; Ibu Yatini</strong>
+            </p>
             <a href="https://instagram.com/supriyd1920" target="_blank" rel="noopener noreferrer"
               class="couple-card__ig">
               <i data-lucide="instagram"></i> @supriyd1920
@@ -152,7 +184,9 @@
             </div>
             <h3 class="couple-card__name">Hayu Kartikasari</h3>
             <p class="couple-card__label">Mempelai Wanita</p>
-            <p class="couple-card__parents">Putri dari:<br /><strong>Bapak Mimbar &amp; Ibu Sutrimah</strong></p>
+            <p class="couple-card__parents">
+              Putri dari:<br /><strong>Bapak Mimbar &amp; Ibu Sutrimah</strong>
+            </p>
             <a href="https://instagram.com/kartiikahs" target="_blank" rel="noopener noreferrer"
               class="couple-card__ig">
               <i data-lucide="instagram"></i> @kartiikahs
@@ -167,7 +201,7 @@
       <div class="container">
         <header class="section-head" data-aos="fade-up">
           <span class="section-eyebrow">Rangkaian</span>
-          <h2 class="section-title">Resepsi Pernikahan</h2>
+          <h2 class="section-title">Ngunduh Mantu
         </header>
         <div class="event-layout">
           <div class="event-card glass-card" data-aos="fade-right" data-aos-duration="900">
@@ -175,9 +209,13 @@
             <span class="event-badge">Acara</span>
             <h3 class="event-card__title">RESEPSI</h3>
             <ul class="event-meta">
-              <li><i data-lucide="calendar-heart"></i> <span>30 Mei 2026</span></li>
-              <li><i data-lucide="map-pin"></i>
-                <span>Krajan Kidul RT 03 RW 02, Sumberejo, Kec. Pabelan, Kab. Semarang</span>
+              <li>
+                <i data-lucide="calendar-heart"></i> <span>30 Mei 2026</span>
+              </li>
+              <li>
+                <i data-lucide="map-pin"></i>
+                <span>Krajan Kidul RT 03 RW 02, Sumberejo, Kec. Pabelan, Kab.
+                  Semarang</span>
               </li>
             </ul>
             <a class="btn btn--outline" href="https://maps.app.goo.gl/BwcLVTNJH2Xne81h6" target="_blank"
@@ -191,22 +229,13 @@
               referrerpolicy="no-referrer-when-downgrade"
               src="https://www.google.com/maps?q=-7.338466%2C110.557399&amp;hl=id&amp;z=17&amp;output=embed"
               allowfullscreen=""></iframe>
-            <p class="event-map__note">Titik lokasi mengikuti tautan undangan: Krajan Kidul RT 03 RW 02, Sumberejo, Kec.
-              Pabelan, Kab. Semarang.</p>
+            <p class="event-map__note">
+              Titik lokasi mengikuti tautan undangan: Krajan Kidul RT 03 RW
+              02, Sumberejo, Kec. Pabelan, Kab. Semarang.
+            </p>
           </div>
         </div>
-        <div class="timeline" data-aos="fade-up">
-          <h4 class="timeline__title">Timeline</h4>
-          <ol class="timeline__list">
-            <li class="timeline__item"><span class="time">10:00</span><span class="desc">Pembukaan &amp; sambutan</span>
-            </li>
-            <li class="timeline__item"><span class="time">11:00</span><span class="desc">Akad / prosesi inti</span></li>
-            <li class="timeline__item"><span class="time">12:00</span><span class="desc">Resepsi &amp; ramah
-                tamah</span></li>
-            <li class="timeline__item"><span class="time">14:00</span><span class="desc">Sesi foto &amp; penutup</span>
-            </li>
-          </ol>
-        </div>
+
       </div>
     </section>
 
@@ -218,27 +247,40 @@
           <h2 class="section-title">Love Story</h2>
         </header>
         <div class="story-track" id="storyTrack">
-          <div class="story-line" aria-hidden="true"><span class="story-line__glow"></span></div>
+          <div class="story-line" aria-hidden="true">
+            <span class="story-line__glow"></span>
+          </div>
           <article class="story-node" data-aos="fade-up">
             <span class="story-node__dot"></span>
             <h3>Pertemuan</h3>
-            <p>Takdir mempertemukan dua jiwa dalam satu ruang yang penuh senyum dan percakapan ringan yang tak
-              terlupakan.</p>
+            <p>
+              Takdir mempertemukan dua jiwa dalam satu ruang yang penuh senyum
+              dan percakapan ringan yang tak terlupakan.
+            </p>
           </article>
           <article class="story-node" data-aos="fade-up" data-aos-delay="80">
             <span class="story-node__dot"></span>
             <h3>Pendekatan</h3>
-            <p>Setiap pertemuan berikutnya semakin hangat, keyakinan tumbuh pelan namun pasti di antara keduanya.</p>
+            <p>
+              Setiap pertemuan berikutnya semakin hangat, keyakinan tumbuh
+              pelan namun pasti di antara keduanya.
+            </p>
           </article>
           <article class="story-node" data-aos="fade-up" data-aos-delay="160">
             <span class="story-node__dot"></span>
             <h3>Lamaran</h3>
-            <p>Janji suci diucapkan di hadapan keluarga, membuka babak baru yang penui harapan.</p>
+            <p>
+              Janji suci diucapkan di hadapan keluarga, membuka babak baru
+              yang penui harapan.
+            </p>
           </article>
           <article class="story-node" data-aos="fade-up" data-aos-delay="240">
             <span class="story-node__dot"></span>
             <h3>Menuju Pernikahan</h3>
-            <p>Kini kami mengundang Anda untuk menjadi saksi awal perjalanan panjang kami bersama.</p>
+            <p>
+              Kini kami mengundang Anda untuk menjadi saksi awal perjalanan
+              panjang kami bersama.
+            </p>
           </article>
         </div>
       </div>
@@ -251,38 +293,46 @@
           <span class="section-eyebrow">Momen</span>
           <h2 class="section-title">Galeri</h2>
         </header>
-        <div class="gallery-collage" id="galleryMasonry" data-aos="fade-up" data-aos-duration="1000">
-          <!-- Area A: foto portrait besar kiri -->
-          <figure class="collage-item collage-item--a">
+        <div class="gallery-container" id="galleryMasonry" data-aos="fade-up" data-aos-duration="1000">
+          <div class="gallery-item" aria-label="Bersama">
             <img src="assets/images/gallery-01.webp" alt="Momen bersama" loading="lazy" decoding="async"
               class="gallery-img" />
-            <figcaption class="collage-caption">Bersama</figcaption>
-          </figure>
-          <!-- Area B: foto landscape atas kanan -->
-          <figure class="collage-item collage-item--b">
+            <div class="overlay"><span>Bersama</span></div>
+          </div>
+          <div class="gallery-item" aria-label="Bahagia">
             <img src="assets/images/gallery-02.webp" alt="Momen bahagia" loading="lazy" decoding="async"
               class="gallery-img" />
-            <figcaption class="collage-caption">Bahagia</figcaption>
-          </figure>
-          <!-- Area C: foto square tengah kanan -->
-          <figure class="collage-item collage-item--c">
+            <div class="overlay"><span>Bahagia</span></div>
+          </div>
+          <div class="gallery-item" aria-label="Cinta">
             <img src="assets/images/gallery-03.webp" alt="Momen cinta" loading="lazy" decoding="async"
               class="gallery-img" />
-            <figcaption class="collage-caption">Cinta</figcaption>
-          </figure>
-          <!-- Area D: foto landscape lebar bawah -->
-          <figure class="collage-item collage-item--d">
+            <div class="overlay"><span>Cinta</span></div>
+          </div>
+          <div class="gallery-item" aria-label="Indah">
             <img src="assets/images/gallery-04.webp" alt="Momen indah" loading="lazy" decoding="async"
               class="gallery-img" />
-            <figcaption class="collage-caption">Indah</figcaption>
-          </figure>
+            <div class="overlay"><span>Indah</span></div>
+          </div>
+          <div class="gallery-item" aria-label="Manis">
+            <img src="assets/images/gallery-05.webp" alt="Momen manis" loading="lazy" decoding="async"
+              class="gallery-img" />
+            <div class="overlay"><span>Manis</span></div>
+          </div>
+          <div class="gallery-item" aria-label="Berharga">
+            <img src="assets/images/gallery-06.webp" alt="Momen berharga" loading="lazy" decoding="async"
+              class="gallery-img" />
+            <div class="overlay"><span>Berharga</span></div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Tampilan gambar">
-      <button type="button" class="lightbox__close" id="lightboxClose" aria-label="Tutup">&times;</button>
+      <button type="button" class="lightbox__close" id="lightboxClose" aria-label="Tutup">
+        &times;
+      </button>
       <img src="" alt="" class="lightbox__img" id="lightboxImg" />
     </div>
 
@@ -294,10 +344,18 @@
           <h2 class="section-title">Menuju Hari Bahagia</h2>
         </header>
         <div class="cd-cards" data-aos="zoom-in">
-          <div class="cd-card"><span id="cdDays">00</span><small>Hari</small></div>
-          <div class="cd-card"><span id="cdHours">00</span><small>Jam</small></div>
-          <div class="cd-card"><span id="cdMinutes">00</span><small>Menit</small></div>
-          <div class="cd-card"><span id="cdSeconds">00</span><small>Detik</small></div>
+          <div class="cd-card">
+            <span id="cdDays">00</span><small>Hari</small>
+          </div>
+          <div class="cd-card">
+            <span id="cdHours">00</span><small>Jam</small>
+          </div>
+          <div class="cd-card">
+            <span id="cdMinutes">00</span><small>Menit</small>
+          </div>
+          <div class="cd-card">
+            <span id="cdSeconds">00</span><small>Detik</small>
+          </div>
         </div>
       </div>
     </section>
@@ -308,7 +366,9 @@
         <header class="section-head" data-aos="fade-up">
           <span class="section-eyebrow">Konfirmasi</span>
           <h2 class="section-title">RSVP</h2>
-          <p class="section-lead">Kehadiran dan doa Anda adalah hadiah terindah bagi kami.</p>
+          <p class="section-lead">
+            Kehadiran dan doa Anda adalah hadiah terindah bagi kami.
+          </p>
         </header>
         <form class="rsvp-form glass-card" id="rsvpForm" data-aos="fade-up" novalidate>
           <div class="form-row">
@@ -330,8 +390,10 @@
           <fieldset class="form-row">
             <legend>Konfirmasi Kehadiran</legend>
             <div class="radio-group">
-              <label class="radio"><input type="radio" name="attendance" value="Hadir" required /> Hadir</label>
-              <label class="radio"><input type="radio" name="attendance" value="Tidak Hadir" /> Tidak Hadir</label>
+              <label class="radio"><input type="radio" name="attendance" value="Hadir" required />
+                Hadir</label>
+              <label class="radio"><input type="radio" name="attendance" value="Tidak Hadir" />
+                Tidak Hadir</label>
             </div>
             <span class="field-error" data-for="attendance"></span>
           </fieldset>
@@ -355,7 +417,9 @@
         <i data-lucide="sparkles" class="modal__icon"></i>
         <h3 id="modalSuccessTitle">Terima kasih</h3>
         <p>RSVP Anda telah kami terima. Mohon doa restunya.</p>
-        <button type="button" class="btn btn--outline" id="modalSuccessClose">Tutup</button>
+        <button type="button" class="btn btn--outline" id="modalSuccessClose">
+          Tutup
+        </button>
       </div>
     </div>
 
@@ -373,8 +437,9 @@
             <h3>Bank BCA</h3>
             <p class="gift-card__name">a.n Supriyadi</p>
             <p class="gift-card__rek" data-copy="3201274981">3201274981</p>
-            <button type="button" class="btn btn--ghost copy-btn" data-copy="3201274981"><i data-lucide="copy"></i>
-              Salin rekening</button>
+            <button type="button" class="btn btn--ghost copy-btn" data-copy="3201274981">
+              <i data-lucide="copy"></i> Salin rekening
+            </button>
           </article>
           <article class="gift-card glass-card" data-aos="fade-up" data-aos-delay="80">
             <img src="assets/images/Bank_Negara_Indonesia.png" alt="Logo BNI" class="gift-card__logo" width="160"
@@ -382,10 +447,10 @@
             <h3>Bank BNI</h3>
             <p class="gift-card__name">a.n Hayu Kartikasari</p>
             <p class="gift-card__rek" data-copy="1166990603">1166990603</p>
-            <button type="button" class="btn btn--ghost copy-btn" data-copy="1166990603"><i data-lucide="copy"></i>
-              Salin rekening</button>
+            <button type="button" class="btn btn--ghost copy-btn" data-copy="1166990603">
+              <i data-lucide="copy"></i> Salin rekening
+            </button>
           </article>
-
         </div>
       </div>
     </section>
@@ -398,12 +463,14 @@
           <h2 class="section-title">Pesan Tamu</h2>
         </header>
         <div class="wishes-toolbar">
-          <button type="button" class="btn btn--outline btn--sm" id="btnRefreshWishes" style="display:none"><i
-              data-lucide="refresh-cw"></i>
-            Muat ulang</button>
+          <button type="button" class="btn btn--outline btn--sm" id="btnRefreshWishes" style="display: none">
+            <i data-lucide="refresh-cw"></i> Muat ulang
+          </button>
         </div>
         <div class="wishes-list" id="wishesList">
-          <p class="wishes-placeholder" id="wishesPlaceholder">Memuat ucapan…</p>
+          <p class="wishes-placeholder" id="wishesPlaceholder">
+            Memuat ucapan…
+          </p>
           <div class="wishes-cards" id="wishesCards"></div>
         </div>
       </div>
@@ -415,13 +482,24 @@
       <img src="assets/images/footer-image.webp" alt="" class="footer__art" loading="lazy" decoding="async" width="1200"
         height="400" />
       <p class="footer__thanks" data-aos="fade-up">Thank You</p>
-      <h2 class="footer__names" data-aos="fade-up" data-aos-delay="80">Supriyadi <span>&</span> Hayu Kartikasari</h2>
-      <p class="footer__quote" data-aos="fade-up" data-aos-delay="120">“Dalam sederhana kami, engkau hadir dengan cara
-        yang membuat semuanya terasa lebih bermakna. Terima kasih telah datang, meski dunia mungkin sedang sibuk
-        memanggilmu ke arah lain.”
+      <div class="footer__logo-wrap" data-aos="fade-up" data-aos-delay="40"
+        style="margin: 1.5rem auto; display: flex; justify-content: center;">
+        <img src="assets/images/logo-pernikahan.png" alt="Logo Pernikahan" width="60" height="18" loading="lazy"
+          decoding="async" style="width: 60px; height: auto;" />
+      </div>
+      <h2 class="footer__names" data-aos="fade-up" data-aos-delay="80">
+        <span style="color: #722f37; font-style: normal; opacity: 1;">Supriyadi</span> <span>&</span> Hayu
+        Kartikasari
+      </h2>
+      <p class="footer__quote" data-aos="fade-up" data-aos-delay="120">
+        “Dalam sederhana kami, engkau hadir dengan cara yang membuat semuanya
+        terasa lebih bermakna. Terima kasih telah datang, meski dunia mungkin
+        sedang sibuk memanggilmu ke arah lain.”
       </p>
       <div class="footer__social" data-aos="fade-up" data-aos-delay="160">
-        <div class="footer__social-icon" aria-hidden="true"><i data-lucide="instagram"></i></div>
+        <div class="footer__social-icon" aria-hidden="true">
+          <i data-lucide="instagram"></i>
+        </div>
         <div class="footer__social-links">
           <a href="https://instagram.com/supriyd1920" target="_blank" rel="noopener noreferrer"
             aria-label="Instagram mempelai pria"><i data-lucide="instagram"></i> @supriyd1920</a>
@@ -433,13 +511,13 @@
     </footer>
   </main>
 
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@latest" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"
-    referrerpolicy="no-referrer"></script>
+    referrerpolicy="no-referrer" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"
-    referrerpolicy="no-referrer"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
   <script src="js/script.js" defer></script>
 </body>
 
